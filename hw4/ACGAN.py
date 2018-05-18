@@ -116,4 +116,4 @@ generate_images = (generate_images + 1)/2
 g = np.zeros((64*2,64*10,3),dtype =float)
 for i in range(20):
     g[(i//10)*64:(i//10+1)*64,64*(i%10):64*((i%10)+1),:] = generate_images[i]
-io.imsave('./fig3_3.jpg',g)
+io.imsave(os.path.join(sys.argv[2],'fig3_3.jpg'),g)
