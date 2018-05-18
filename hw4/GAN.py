@@ -96,7 +96,7 @@ valid = discriminator(noise_img)
 total_model = Model(noise_input, valid)    
 total_model.compile(loss='binary_crossentropy', optimizer=adam)
 total_model.summary()
-total_model.load_weights('GAN.h5py')
+total_model.load_weights('./GAN.h5py')
 
 
 

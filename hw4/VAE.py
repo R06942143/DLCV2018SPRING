@@ -213,7 +213,7 @@ _y = x_decoded_mean_squash(_d_4)
 
 generate = Model(z_1_4,_y)
 
-vae.load_weights('VAE.h5py')
+vae.load_weights('./VAE.h5py')
 
 
 np.random.seed(1)
