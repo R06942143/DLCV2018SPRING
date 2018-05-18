@@ -42,6 +42,8 @@ for i in range(len(path_list)):
     img = io.imread(os.path.join(data_path,path_list[i]))
     x_test[i] = img
 
+x_train/= 255.0
+x_test/=255.0
 
 
 label = np.genfromtxt(os.path.join(sys.argv[1],'test.csv'),delimiter=',',skip_header=1)
@@ -226,7 +228,7 @@ for i in range(10):
     v[:,64*i:64*(i+1),:] = vae_predict[i]
 vvv = np.zeros((64,64*10,3))
 for i in range(10):
-    vvv[:,i*64:(i+1)*64,:] = x_test[i+10]/255.0
+    vvv[:,i*64:(i+1)*64,:] = x_test[i+10]
 io.imsave(os.path.join(sys.argv[2],'fig1_3.jpg'),np.concatenate((vvv,v),axis = 0))
       
 for i in range(32):
