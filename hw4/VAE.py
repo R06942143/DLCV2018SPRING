@@ -42,9 +42,9 @@ for i in range(len(path_list)):
     img = io.imread(os.path.join(data_path,path_list[i]))
     x_test[i] = img
 
+
 x_train/= 255.0
 x_test/=255.0
-
 
 label = np.genfromtxt(os.path.join(sys.argv[1],'test.csv'),delimiter=',',skip_header=1)
 
