@@ -101,20 +101,19 @@ total_model = Model([noise_input,feature_input], [valid,feature])
 total_model.compile(loss='binary_crossentropy', optimizer=OPT)
 total_model.summary()
 total_model.load_weights('./ACGAN.h5py')
-
-
-k = 100
+k = 10
 
 mid = np.concatenate([np.ones(k),np.zeros(k)],axis=0)
 
 np.random.seed(40)
-noise = np.random.normal(0, 1, (k, NOISE_DIM))
+noise = np.random.normal(0, 1, (50, NOISE_DIM))
+noise = noise[[0,4,5,7,22,25,36,41,42,43]]
 noise = np.concatenate([noise,noise],axis=0)
 generate_images = generator.predict([noise,mid])
 generate_images = (generate_images + 1)/2
 
+
 g = np.zeros((64*2,64*10,3),dtype =float)
 for i in range(20):
     g[(i//10)*64:(i//10+1)*64,64*(i%10):64*((i%10)+1),:] = generate_images[i]
-io.imsave(os.path.join(sys.argv[2],'fig3_3.jpg'),g)
-
+io.imsave('./fig3_3.jpg',g)
