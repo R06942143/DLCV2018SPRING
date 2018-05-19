@@ -90,7 +90,7 @@ generator.summary()
 
 discriminator = Discriminator()
 discriminator.compile(loss='binary_crossentropy', optimizer=OPT, metrics=['accuracy'])
-discriminator.summary()
+
 
 
 discriminator.trainable = False
@@ -99,7 +99,7 @@ discriminator.trainable = False
         
 total_model = Model([noise_input,feature_input], [valid,feature])    
 total_model.compile(loss='binary_crossentropy', optimizer=OPT)
-total_model.summary()
+
 total_model.load_weights('./ACGAN.h5py')
 k = 10
 
