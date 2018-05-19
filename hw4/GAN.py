@@ -87,7 +87,7 @@ noise_img = generator(noise_input)
 sgd = optimizers.SGD(lr=0.0001, decay=1e-6, momentum=0.9, nesterov=True)
 discriminator = Discriminator()
 discriminator.compile(loss='binary_crossentropy', optimizer=adam, metrics=['accuracy'])
-discriminator.summary()
+
 
 discriminator.trainable = False
         
@@ -95,7 +95,7 @@ valid = discriminator(noise_img)
 
 total_model = Model(noise_input, valid)    
 total_model.compile(loss='binary_crossentropy', optimizer=adam)
-total_model.summary()
+
 total_model.load_weights('./GAN.h5py')
 
 
