@@ -29,6 +29,7 @@ lamdba = float(0.000003)
 
 data_path = os.path.join(sys.argv[1],'train')
 path_list = os.listdir(data_path)
+path_list = np.sort(path_list)
 x_train = np.zeros([len(path_list),64,64,3])
 for i in range(len(path_list)):
     img = io.imread(os.path.join(data_path,path_list[i]))
@@ -37,6 +38,7 @@ for i in range(len(path_list)):
 
 data_path = os.path.join(sys.argv[1],'test')
 path_list = os.listdir(data_path)
+path_list = np.sort(path_list)
 x_test = np.zeros([len(path_list),64,64,3])
 for i in range(len(path_list)):
     img = io.imread(os.path.join(data_path,path_list[i]))
@@ -217,10 +219,10 @@ generate = Model(z_1_4,_y)
 
 vae.load_weights('./VAE.h5py')
 
-
+yyy = 10
 np.random.seed(1)
 a = np.random.normal(0,2,(32,latent_dim))
-vae_predict = (vae.predict(x_test[10:20],verbose=1))
+vae_predict = (vae.predict(x_test[yyy:10+yyy],verbose=1))
 gen_predict = (generate.predict(a,verbose=1))
 v = np.zeros((64,64*10,3),dtype = float)
 g = np.zeros((64*4,64*8,3),dtype = float)
@@ -228,7 +230,7 @@ for i in range(10):
     v[:,64*i:64*(i+1),:] = vae_predict[i]
 vvv = np.zeros((64,64*10,3))
 for i in range(10):
-    vvv[:,i*64:(i+1)*64,:] = x_test[i+10]
+    vvv[:,i*64:(i+1)*64,:] = x_test[i+yyy]
 io.imsave(os.path.join(sys.argv[2],'fig1_3.jpg'),np.concatenate((vvv,v),axis = 0))
       
 for i in range(32):
