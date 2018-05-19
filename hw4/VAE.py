@@ -173,7 +173,6 @@ vae.add_loss(vae_loss)
 
 vae.compile(optimizer='rmsprop')
 vae_monitor.compile(loss = mean_squared_error,optimizer = 'rmsprop',metrics=['acc'])
-vae.summary()
 
 
 
