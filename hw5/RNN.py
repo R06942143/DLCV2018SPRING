@@ -17,6 +17,7 @@ valid_bb= np.load('/root/data/DL_5/valid_bb.npy')
 input_tensor = Input(shape=(240,320,3))
 #model = InceptionV3(input_tensor = input_tensor,include_top=False, weights='imagenet')
 model = ResNet50(input_tensor=input_tensor,weights='imagenet', include_top=False)
+
 outcome = model.predict(train_X,verbose = 1)
 outcome_V = model.predict(valid_X,verbose =1)
 feature_X = np.zeros((len(bb),max(bb),2048))
@@ -36,12 +37,12 @@ for i in range(len(valid_bb)):
 
 
 input_features = Input(batch_shape=(None,None,2048))
-x = Bidirectional(GRU(512,kernel_regularizer = l2(0.002)))(input_features)
-x = Bidirectional(GRU(256,kernel_regularizer = l2(0.002)))(x)
-x = Dense(11,kernel_regularizer = l2(0.002))(x)
-x = Activation('softmax')(x)
+x = Bidirectional(GRU(512,kernel_regularizer = l2(0.002),return_sequences = True))(input_features)
+x = Bidirectional(GRU(256,kernel_regularizer = l2(0.002),return_sequences = True))(x)
+x = Dense(11,kernel_regularizer = l2(0.002),activation = 'softmax')(x)
+x = Reshape((11,))(x)
 RNN_layer = Model(input_features,x)
-
+RNN_layer.summary()
 
 #RNN_layer = Sequential()
 #RNN_layer.add(Input(shape=(None,2048)))
