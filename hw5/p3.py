@@ -6,14 +6,21 @@ from keras.layers import *
 from keras.callbacks import *
 from keras.applications.resnet50 import ResNet50
 from keras.regularizers import *
+import os
 
-train_X = np.load('/root/data/DL_5/train_X.npy')
-train_Y = np.load('/root/data/DL_5/train_Y.npy')
-valid_X = np.load('/root/data/DL_5/valid_X.npy')
-valid_Y = np.load('/root/data/DL_5/valid_Y.npy')
+train_path = '/root/data/DL_5/FullLengthVideos/videos/train/'
 
-bb      = np.load('/root/data/DL_5/train_bb.npy')
-valid_bb= np.load('/root/data/DL_5/valid_bb.npy')
+folder = os.listdir(train_path)
+
+
+
+
+
+'''
+
+
+
+
 input_tensor = Input(shape=(240,320,3))
 #model = InceptionV3(input_tensor = input_tensor,include_top=False, weights='imagenet')
 model = ResNet50(input_tensor=input_tensor,weights='imagenet', include_top=False)
@@ -64,3 +71,4 @@ see = RNN_layer.predict(feature_V)
 np.savetxt('./see.npy',np.round(see),delimiter=',')
 
 
+'''
