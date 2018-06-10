@@ -42,7 +42,7 @@ for i in range(len(valid_bb)):
 
 RNN_layer = load_model('./p2.hdf5')
 
-k = np.argmax(np.around(RNN_layer.predict(feature_V)),axis =1)
+ans = np.argmax(np.around(RNN_layer.predict(feature_V)),axis =1)
 
 with open(os.path.join(sys.argv[3],'p2_result.txt'), 'w') as f:
     for i in ans:
