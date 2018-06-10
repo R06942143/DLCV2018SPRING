@@ -43,9 +43,7 @@ feature_V = np.array(feature_average).reshape(len(feature_average),-1)
 
 FC_layer = load_model('./p1.hdf5')
 
-ans = np.argmax(np.around(FC_layer.predict(feature_V)))
-np.save('./ans.npy',ans)
-for i in ans:
-    print(i)
-
-
+ans = np.argmax(np.around(FC_layer.predict(feature_V)),axis =1)
+with open(os.path.join(sys.argv[3],'p1_valid.txt'), 'w') as f:
+    for i in ans:
+        f.write('%d\n' %(i))
