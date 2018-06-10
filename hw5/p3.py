@@ -8,7 +8,7 @@ from keras.regularizers import *
 import os
 from skimage import io
 import sys
-valid_path = '/root/data/DL_5/HW5_data/FullLengthVideos/videos/valid/'
+valid_path = sys.argv[1]
 valid_folder = sorted(os.listdir(valid_path))
 
 
@@ -38,34 +38,34 @@ videoRNN = load_model('./p3.hdf5')
 outcome_V1 = model.predict(valid_X1,verbose = 1)
 predict_X1 = videoRNN.predict(outcome_V1,verbose = 1)
 ans_1 = np.argmax(np.around(predict_X1),axis =1)
-with open(os.path.join(sys.argv[3],str(valid_folder[0])+'.txt'), 'w') as f:
+with open(os.path.join(sys.argv[2],str(valid_folder[0])+'.txt'), 'w') as f:
     for i in ans_1:
         f.write('%d\n' %(i))
 
 outcome_V2 = model.predict(valid_X2,verbose = 1)
 predict_X2 = videoRNN.predict(outcome_V2,verbose = 1)
 ans_2 = np.argmax(np.around(predict_X2),axis =1)
-with open(os.path.join(sys.argv[3],str(valid_folder[1])+'.txt'), 'w') as f:
+with open(os.path.join(sys.argv[2],str(valid_folder[1])+'.txt'), 'w') as f:
     for i in ans_2:
         f.write('%d\n' %(i))
 
 outcome_V3 = model.predict(valid_X3,verbose = 1)
 predict_X3 = videoRNN.predict(outcome_V3,verbose = 1)
 ans_3 = np.argmax(np.around(predict_X3),axis =1)
-with open(os.path.join(sys.argv[3],str(valid_folder[2])+'.txt'), 'w') as f:
+with open(os.path.join(sys.argv[2],str(valid_folder[2])+'.txt'), 'w') as f:
     for i in ans_3:
         f.write('%d\n' %(i))
 
 outcome_V4 = model.predict(valid_X4,verbose = 1)
 predict_X4 = videoRNN.predict(outcome_V4,verbose = 1)
 ans_4 = np.argmax(np.around(predict_X4),axis =1)
-with open(os.path.join(sys.argv[3],str(valid_folder[3])+'.txt'), 'w') as f:
+with open(os.path.join(sys.argv[2],str(valid_folder[3])+'.txt'), 'w') as f:
     for i in ans_4:
         f.write('%d\n' %(i))
 outcome_V5 = model.predict(valid_X5,verbose = 1)
 predict_X5 = videoRNN.predict(outcome_V5,verbose = 1)
 ans_5 = np.argmax(np.around(predict_X5),axis =1)
-with open(os.path.join(sys.argv[3],str(valid_folder[4])+'.txt'), 'w') as f:
+with open(os.path.join(sys.argv[2],str(valid_folder[4])+'.txt'), 'w') as f:
     for i in ans_5:
         f.write('%d\n' %(i))
 
