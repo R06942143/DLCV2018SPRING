@@ -1,3 +1,4 @@
+from keras.callbacks import History 
 from keras.applications import InceptionV3
 from reader import readShortVideo,getVideoList
 import numpy as np
@@ -59,8 +60,13 @@ FC_layer.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['acc'
 
 checkpoint = ModelCheckpoint("./model/model_{val_acc:.2f}.hdf5", monitor='val_acc', verbose=1, save_best_only=True, mode='max',period=1)
 
-FC_layer.fit(feature_X, train_Y, epochs=50, batch_size=64,validation_data=(feature_V,valid_Y),callbacks=[checkpoint],verbose=1)
+hist = FC_layer.fit(feature_X, train_Y, epochs=50, batch_size=64,validation_data=(feature_V,valid_Y),callbacks=[checkpoint],verbose=1)
 see = FC_layer.predict(feature_V)
 np.savetxt('./see.npy',np.round(see),delimiter=',')
+
+print(hist.history.keys())
+
+np.save('./p1_val_acc.npy',hist.history['val_acc'])
+np.save('./p1_train_loss.npy',hist.history['loss'])
 
 
